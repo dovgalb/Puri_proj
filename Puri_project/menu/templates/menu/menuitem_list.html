@@ -1,0 +1,32 @@
+{% extends 'menu/base.html' %}
+
+{% block title %} Список всех блюд {% endblock  %}
+{% block navbar %}{% include 'includes/navbar.html' %}{% endblock navbar %}
+{% block sidebar %}{% include 'includes/sidebar.html' %}{% endblock sidebar %}
+
+{% block content %}
+  {% for dish in object_list %}
+
+<div class="container">
+  <div class="card mb-3" style="max-width: 60rem;">
+    <div class="row">
+      <div class="col-md-4" style="max-width: 40rem">
+        <img src=" " alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+
+          <h5 class="card-title">{{ dish.name }}</h5>
+          <p class="card-text">Cостав: {{ dish.compound }}</p>
+          <p class="card-text">Cоус/Заправка: {{ dish.sauce }}</p>
+          <p class="card-text">Выход блюда: {{ dish.weight }}</p>
+
+          <p class="card-text"><small class="text-muted">Дата добавления {{ dish.create_date}} | Последнее обновление {{ dish.update_date}}</small></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+{% endblock  %}

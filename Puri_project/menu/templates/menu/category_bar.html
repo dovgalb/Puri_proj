@@ -1,0 +1,30 @@
+{% extends 'menu/base.html' %}
+
+{% block title %} {{ MenuItem.subcategory.name }} {% endblock %}
+
+{% block navbar %}{% include 'includes/navbar.html' %}{% endblock navbar %}
+{% block sidebar %}{% include 'includes/sidebar.html' %}{% endblock sidebar %}
+
+{% block content %}
+{% for bar_item in object_list %}
+  <div class="container">
+      <div class="card mb-3" style="max-width: 60rem;">
+        <div class="row">
+          <div class="col-md-4" style="max-width: 40rem">
+            <img src=" " alt="...">
+					</div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ beverages.name }}</h5>
+              <p class="card-text">Cостав: {{ beverages.compound }}</p>
+              <p class="card-text">Cоус/Заправка: {{ beverages.sauce }}</p>
+              <p class="card-text">Выход блюда: {{ beverages.weight }}</p>
+              <p class="card-text"><small class="text-muted">Дата добавления {{ beverages.create_date}} | Последнее обновление {{ beverages.update_date}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
