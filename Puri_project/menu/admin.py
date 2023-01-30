@@ -6,7 +6,7 @@ from .models import *
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ['name', 'subcategory', 'create_date', 'update_date', ]
-
+    filter_horizontal = ['compound', 'sauce']
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
@@ -14,5 +14,10 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', ]
+
+
+@admin.register(Compound)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', ]

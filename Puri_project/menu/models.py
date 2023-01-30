@@ -7,9 +7,9 @@ from django.urls import reverse
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=200, verbose_name='Блюдо')
-    compound = models.TextField(blank=True, verbose_name='Состав')
+    compound = models.ManyToManyField('Compound', blank=True, related_name='related_compound', verbose_name='Состав блюда')
     weight = models.PositiveIntegerField(blank=True, verbose_name='Выход блюда (граммов)', null=True)
-    sauce = models.TextField(blank=True, verbose_name='Соус/Заправка', null=True)
+    sauce = models.ManyToManyField('Compound', blank=True, related_name='related_sauce', verbose_name='Состав соуса')
     description = models.TextField(blank=True, verbose_name='Красочное описание', null=True)
     subcategory = models.ForeignKey('SubCategory', on_delete=models.SET_NULL, null=True, verbose_name='Подкатегория')
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, verbose_name='Категория')
@@ -19,6 +19,14 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return f'{self.name}|{self.subcategory}'
+    
+
+class Compound(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name='Ингридиент')
+    
+    def __str__(self):
+        return self.name
+    
 
 
 class SubCategory(models.Model):

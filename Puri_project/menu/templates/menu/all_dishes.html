@@ -23,8 +23,8 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ dish.name }}</h5>
-            <p class="card-text">Cостав: {{ dish.compound }}</p>
-            <p class="card-text">Cоус/Заправка: {{ dish.sauce }}</p>
+            <p class="card-text">Cостав блюда: {% for comp in dish.compound.all %}{{comp}}, {% endfor %}</p>
+            <p class="card-text">Состав соуса/заправки: {% for comp in dish.sauce.all %}{{comp}}, {% endfor %}</p>
             <p class="card-text">Выход блюда: {{ dish.weight }}</p>
             <p class="card-text"><small class="text-muted">Дата добавления {{ dish.create_date}} | Последнее обновление {{ dish.update_date}}</small></p>
           </div>
