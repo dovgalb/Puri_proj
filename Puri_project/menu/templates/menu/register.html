@@ -15,6 +15,9 @@
             {{field}}
         </div>
     {% endfor %}
+    <span>{{form.errors}}</span>
+    <span>Уже есть аккаунт?<a href="{% url 'login' %}">Войти</a></span>
+        
     <button type="submit" class="btn btn-primary">Регистрация</button>
 </form>
 
