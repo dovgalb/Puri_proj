@@ -22,7 +22,7 @@ def main_page(request):
     return render(request, 'menu/index.html')
 
 
-class SubCategoryBarEat( View):
+class SubCategoryBarEat(View):
     """возвращает все подкатегории напитков в сайдбаре"""
     def get_subcat_bar(self, *args, **kwargs):
         return SubCategory.objects.filter(category_id='2')

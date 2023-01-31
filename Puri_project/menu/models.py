@@ -20,6 +20,9 @@ class MenuItem(models.Model):
     def __str__(self):
         return f'{self.name}|{self.subcategory}'
     
+    class Meta:
+        verbose_name = "Блюдо или напиток"
+        verbose_name_plural = "Блюда и напитки"
 
 class Compound(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Название ингридиента')
@@ -28,10 +31,14 @@ class Compound(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        verbose_name = "Ингридиент"
+        verbose_name_plural = "Ингридиенты"
+    
 
 
 class SubCategory(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Подкатегория')
+    name = models.CharField(max_length=30, verbose_name='Название подкатегории')
     category = models.ForeignKey('Category', null=True, on_delete=models.SET_NULL, verbose_name='Категория')
     slug = models.SlugField(default='', null=False, db_index=True, blank=True, unique=True)
 
@@ -44,10 +51,18 @@ class SubCategory(models.Model):
 
     def get_url(self):
         return reverse('show_subcategory_item', args=[self.slug])
+    
+    class Meta:
+        verbose_name = "Подкатегория"
+        verbose_name_plural = "Подкатегории"
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, verbose_name='Название категории')
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
