@@ -70,12 +70,25 @@ class Search(UserAccesMixin, SubCategoryBarEat, ListView):
     permission_required = 'menu.view_menuitem'
     
     def get_queryset(self):
-        return MenuItem.objects.filter(
-            Q(name__iregex=self.request.GET.get('search'))| 
-            Q(compound__iregex=self.request.GET.get('search'))|
-            Q(sauce__iregex=self.request.GET.get('search'))
-            )
-    
+        queryset = MenuItem.objects.filter(
+            Q(name__iregex=self.request.GET.get('search'))|
+            Q(compound__name__iregex=self.request.GET.get('search'))|
+            Q(compound__compound__name__iregex=self.request.GET.get('search'))|
+            Q(sauce__name__iregex=self.request.GET.get('search'))
+            ).distinct()
+        return queryset
+
+
+
+# def search_test(request):
+#     if request.method == "POST":
+#         searched = request.POST['searched']
+#         search_dishes = MenuItem.objects.filter(name__contains=searched)
+#         return render(request, 'menu/search.html', context={'searched': searched,
+#                                                             'search_dishes': search_dishes })
+#     else:
+#         return render(request, 'menu/search.html', context={})
+
  
 class FilterMenuItemView(UserAccesMixin, SubCategoryBarEat, ListView):
     """чекбокс фильтр менюайтемов по категориям"""

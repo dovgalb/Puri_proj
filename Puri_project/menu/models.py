@@ -22,7 +22,8 @@ class MenuItem(models.Model):
     
 
 class Compound(models.Model):
-    name = models.CharField(max_length=50, unique=True, verbose_name='Ингридиент')
+    name = models.CharField(max_length=50, unique=True, verbose_name='Название ингридиента')
+    compound = models.ManyToManyField('Compound', blank=True, related_name='related_compound_compound', verbose_name='Состав ингридиента')
     
     def __str__(self):
         return self.name

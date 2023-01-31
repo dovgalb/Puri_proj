@@ -11,11 +11,13 @@ urlpatterns = [
     path('dishes/', ShowAllDishes.as_view(), name='all_dishes'),
     path('filter/', FilterMenuItemView.as_view(), name='filter'),
     path('search/', Search.as_view(), name='search'),
+
     path('kitchen/', ShowAllKitchen.as_view(), name='kitchen'),
     path('bar/', ShowAllBar.as_view(), name='show_all_bar'),
     path('create-dish/', CreateDish.as_view(), name='add_dish'),
     path('create-subcategory/', CreateSubCategory.as_view(), name='add_subcategory'),
     
+    # path('test-search/', search_test, name='test-search'),
     
     path('api/v1/', include(router.urls)),
 ]
