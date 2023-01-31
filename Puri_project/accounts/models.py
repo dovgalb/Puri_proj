@@ -6,6 +6,12 @@ class Restoraunt(models.Model):
     city = models.CharField(max_length=50, default='Нет Данных', verbose_name='Город')
     adress = models.CharField(max_length=200, verbose_name='Адрес ресторана')
     employee = models.ManyToManyField(User)
-
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Ресторан"
+        verbose_name_plural = "Рестораны"
 
 

@@ -23,9 +23,31 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ dish.name }}</h5>
-            <p class="card-text">Cостав: {{ dish.compound }}</p>
-            <p class="card-text">Cоус/Заправка: {{ dish.sauce }}</p>
-            <p class="card-text">Выход блюда: {{ dish.weight }}</p>
+            <p class="card-text">Cостав блюда:
+              {% for comp in dish.compound.all %} 
+                 {{comp.name}}, 
+              {% endfor %}
+              <hr>
+              {% for comp in dish.compound.all %}
+                {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
+              {% endfor %}
+            </p>
+            <hr>
+            <p class="card-text">Состав соуса/заправки: 
+              {% for comp in dish.sauce.all %}
+                {{comp}},
+                {% for comp in dish.sauce.all %}
+                {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
+                {% endfor %} 
+              {% endfor %}
+              <hr>
+            </p>
+            {% if dish.description %}
+              <p class="card-text">Красочное описание: {{ dish.description }}</p>
+            {% endif %}
+            {% if  dish.weight %}
+              <p class="card-text">Выход блюда: {{ dish.weight }}</p>
+            {% endif %}
             <p class="card-text"><small class="text-muted">Дата добавления {{ dish.create_date}} | Последнее обновление {{ dish.update_date}}</small></p>
           </div>
         </div>
