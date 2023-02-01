@@ -33,15 +33,16 @@
               {% endfor %}
             </p>
             <hr>
-
-            <p class="card-text">Состав соуса/заправки: 
-              {% for comp in dish.sauce.all %}
-                {{comp}},
+            {% if dish.sauce.all.count > 0 %}
+              <p class="card-text">Состав соуса/заправки: 
                 {% for comp in dish.sauce.all %}
-                {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
-                {% endfor %} 
-              {% endfor %}
-            </p>
+                  {{comp}},
+                  {% for comp in dish.sauce.all %}
+                  {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
+                  {% endfor %} 
+                {% endfor %}
+              </p>
+            {% endif %}
             <hr>
             {% if dish.description %}
               <p class="card-text">Красочное описание: {{ dish.description }}</p>
@@ -58,49 +59,3 @@
   {% endfor %}  
 {% endblock  %}
 
-{% comment %} {% extends 'menu/base.html' %}
-{% load static %} 
-
-{% block title %} Список всех блюд {% endblock  %}
-{% block navbar %}{% include 'includes/navbar.html' %}{% endblock navbar %}
-{% block sidebar %}{% include 'includes/sidebar.html' %}{% endblock sidebar %}
-
-{% block content %}
-  <h1>всего блюд: {{object_list.count}}</h1>
-  
-  {% for dish in object_list %}
-    <div class="card mb-3" style="max-width: 60rem;">
-      <div class="row">
-        {% if dish.image %} 
-          <div class="col-md-4" style="max-width: 40rem; margin: auto;">
-            <img src="{{ dish.image.url }}" alt="Нет фото" class="card-img-top">
-          </div>
-        {% else %}
-          <div class="col-md-4" style="max-width: 30rem; margin: auto;">
-            <img src=" {% static 'menu/img/zaglushka.png' %} " alt="Нет" width="200" height="200">
-          </div>
-        {% endif %}
-
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ dish.name }}</h5>
-            <p class="card-text">Cостав блюда:
-              {% for comp in dish.compound.all %} 
-                 {{comp.name}}, 
-              {% endfor %}
-              <hr>
-              {% for comp in dish.compound.all %}
-                {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
-              {% endfor %}
-            </p>
-            <p class="card-text">Состав соуса/заправки: {% for comp in dish.sauce.all %}{{comp}}, {% endfor %}</p>
-            <p class="card-text">Выход блюда: {{ dish.weight }}</p>
-            <p class="card-text"><small class="text-muted">Дата добавления {{ dish.create_date}} | Последнее обновление {{ dish.update_date}}</small></p>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  {% endfor %}
-
-{% endblock  %} {% endcomment %}
