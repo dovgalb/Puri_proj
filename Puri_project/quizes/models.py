@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from menu.models import MenuItem, Compound
 
 # Create your models here.
 DIFF_CHOICES = (
@@ -27,15 +28,16 @@ class Quiz(models.Model):
      
 
 class Question(models.Model):
-    text = models.CharField(max_length=200, verbose_name='Текст вопроса')
+    text = models.ManyToManyField(MenuItem, verbose_name='Текст вопроса')
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return str(self.text)
+        return str(self.text.name)
     
     def get_answers(self):
-        return self.answer_set.all()
+        if self.answer in self.text.compound:
+            return self.answer
     
     class Meta:
         verbose_name = 'Вопрос'
@@ -43,7 +45,9 @@ class Question(models.Model):
     
 
 class Answer(models.Model):
-    text = models.CharField(max_length=200, verbose_name='Текст ответа')
+    text = models.ManyToManyField(Compound)
+
+    # text = models.CharField(max_length=200, verbose_name='Текст ответа')
     correct = models.BooleanField(default=False)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)

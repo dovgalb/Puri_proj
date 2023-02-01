@@ -8,6 +8,7 @@ class QuizAdmin(admin.ModelAdmin):
     
 class AnswerInline(admin.TabularInline):
     model = Answer
+    filter_horizontal =['text',]
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
