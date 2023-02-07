@@ -32,16 +32,18 @@
                 {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
               {% endfor %}
             </p>
-            <hr>
-            <p class="card-text">Состав соуса/заправки: 
-              {% for comp in dish.sauce.all %}
-                {{comp}},
+            
+            {% if dish.sauce.all.count > 0 %}
+              <p class="card-text">Состав соуса/заправки: 
                 {% for comp in dish.sauce.all %}
-                {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
-                {% endfor %} 
-              {% endfor %}
+                  {{comp}},
+                  {% for comp in dish.sauce.all %}
+                  {% if comp.compound.count > 0 %}<p>{{comp}}: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> {% endif %}
+                  {% endfor %} 
+                {% endfor %}
+              </p> 
+            {% endif %}
               <hr>
-            </p>
             {% if dish.description %}
               <p class="card-text">Красочное описание: {{ dish.description }}</p>
             {% endif %}
