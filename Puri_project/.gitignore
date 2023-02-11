@@ -1,0 +1,6 @@
+pyvenv
+../.idea
+./passenger_wsgi.py
+puri_project/Puri_project/settings.py
+puri_project/datadump.json
+.env
