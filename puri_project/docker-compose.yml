@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     command: gunicorn puri_project.wsgi:application --bind 0.0.0.0:8000
     volumes:
+      - ./:/backend
       - static:/backend/static
       - media:/backend/media
     expose:
