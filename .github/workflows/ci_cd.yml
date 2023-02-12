@@ -15,7 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: make up
+      run: |
+        cd Puri_project/
+        echo "${{ secrets.ENV_FILE }}" > .env
+        make up
 
 
   deploy:
