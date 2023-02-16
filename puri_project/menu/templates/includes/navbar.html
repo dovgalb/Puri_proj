@@ -1,66 +1,50 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
-  <a class="navbar-brand" href="#">Меню</a>
+
+
+{% comment %} ва овыифпрваипривыаивыавоытфиа ровыиароивыаи фвыиаоывфиаовыибтавфытафа {% endcomment %}
+
+
+<nav class="container navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Пури-Пури</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class='d-flex justify-content-between w-50'>
-      <ul class="navbar-nav mr-auto">
-  
-        <li class="nav-item active">
+  <div class="collapse navbar-collapse text-left" id="navbarSupportedContent">
+    <ul class="navbar-nav b4-align mr-auto">
+      {% if user.is_authenticated %}
+        <li class="nav-item ">
           <a class="nav-link" href="{% url 'main' %}">Главная</a>
         </li>
-  
-        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'all_dishes' %}">Все блюда</a>
         </li>
-  
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{% url 'kitchen' %}" id="navbarDropdownEat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Еда
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownEat">
-            <a class="dropdown-item" href="{% url 'kitchen' %}">Еда</a>
-          </div>
-        </li>
-  
-        
-        {% if user.is_staff %}
-        {% comment %} {% elif %} {% endcomment %}
+      {% if user.is_staff %}
+      {% comment %} {% elif %} {% endcomment %}
         <li class="nav-item">
           <a class="nav-link" href="/admin">Админ-панель</a>
         </li>
-        {% endif %}
-        {% endif %}
-      </ul>
-    </div>
-
+      {% endif %}
+      {% endif %}
+      {% if not user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="{% url 'login' %}">Вход</a>
+        </li>
+      {% endif %}
+    </ul>
+    
     {% if user.is_authenticated %}
-      <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0 mr-3" method="get" >
-        <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name='search'>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-      </form> 
+    <ul class="navbar-nav mt-2">
+      <li class="nav-item">
+        <a class='nav-link text-success' >{{user.first_name}} {{user.last_name}}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'logout' %}" class="nav-link text-primary">Выход</a>
+      </li>
 
-      {% comment %} <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0 mr-3" method=POST >
-        {% csrf_token %}
-        <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name='search'>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-      </form> {% endcomment %}
-    
-
-      <span class='mr-3'>{{user.first_name}} {{user.last_name}}</span>
-      <a class="btn btn-secondary" href="{% url 'logout' %}" role="button">Выйти</a>
+    </ul>
     {% endif %}
-    {% if not user.is_authenticated %}
-      <div class='mr-3'>
-        <a class="btn btn-success" href="{% url 'register' %}" role="button">Регистрация</a>
-        <a class="btn btn-secondary" href="{% url 'login' %}" role="button">Вход</a>
-      </div>
-    {% endif %}
-    </div>
-    
-  
+  </div>
 </nav>

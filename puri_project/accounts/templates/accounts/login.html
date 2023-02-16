@@ -8,11 +8,11 @@
     <form method="POST" class='center'>
         {% csrf_token %}
         
-        <div class="form-group">
-            <label for="username">логин</label>
+        <div class="form-group text-left">
+            <label for="username">Логин</label>
             <input type="text" class="form-control" name="username" placeholder="Логин">
         </div>
-        <div class="form-group">
+        <div class="form-group text-left">
             <label for="password">Пароль</label>
             <input type="password" class="form-control" name="password" placeholder='пароль'>
         </div>
@@ -22,8 +22,8 @@
             <p id="messages">{{message}}</p> 
         {% endfor %}
         
-        <button type="submit" class="btn btn-primary">Войти</button> 
+        <button type="submit" class="btn btn-primary mt-2">Войти</button> 
     </form>
-    <p>Нет аккаунта? <a href=" {% url 'register' %} ">Зарегестрироваться</a></p>
+    <p class='mt-3'>Нет аккаунта? <a href=" {% url 'register' %} ">Зарегистрироваться</a></p>
 
 {% endblock content %}
