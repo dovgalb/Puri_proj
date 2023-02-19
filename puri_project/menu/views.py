@@ -59,7 +59,7 @@ class ShowAllBar(UserAccesMixin, SubCategoryBarEat, ListView):
     context_object_name = 'menu_items'
 
     def get_queryset(self):
-        return MenuItem.objects.filter(category=4)
+        return MenuItem.objects.filter(category=3)
 
 
 class Search(UserAccesMixin, SubCategoryBarEat, ListView):
