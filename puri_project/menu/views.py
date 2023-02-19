@@ -48,7 +48,7 @@ class ShowAllKitchen(UserAccesMixin, SubCategoryBarEat, ListView):
     context_object_name = 'menu_items'
 
     def get_queryset(self):
-        return MenuItem.objects.filter(category=1)
+        return MenuItem.objects.filter(category=2)
 
 
 class ShowAllBar(UserAccesMixin, SubCategoryBarEat, ListView):
@@ -59,7 +59,7 @@ class ShowAllBar(UserAccesMixin, SubCategoryBarEat, ListView):
     context_object_name = 'menu_items'
 
     def get_queryset(self):
-        return MenuItem.objects.filter(category=2)
+        return MenuItem.objects.filter(category=4)
 
 
 class Search(UserAccesMixin, SubCategoryBarEat, ListView):
