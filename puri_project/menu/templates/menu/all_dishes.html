@@ -30,31 +30,6 @@
   </div>
 </div>
 
-{% comment %} <form action="{% url 'filter' %}" method="get">
-  <a class="btn btn-primary mt-3 mb-3" href="{% url 'show_all_bar' %}" role="button">Напитки</a>
-  {% for bar in view.get_subcat_bar %}
-    <div class="d-flex jc-start ml-5">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="{{bar.id}}" name="bar_category">
-        <label class="form-check-label" for="bar_category">{{bar.name}} </label>
-      </div>
-    </div>
-  {% endfor %}
-  <hr> 
-  <a class="btn btn-primary mt-3 mb-3" href="{% url 'kitchen' %}" role="button">Еда</a>
-  {% for eat in view.get_subcat_eat %}
-    <div class="d-flex jc-start ml-5">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="{{eat.id}}" name="eat_category">
-        <label class="form-check-label" for="eat_category">{{eat.name}} </label>
-      </div>
-    </div>
-  {% endfor %}
-  <hr>
-  <button type="submit" class="btn btn-primary">Искать</button>
-</form>  {% endcomment %}
-
-
 
 <h4 class='text-left'>Всего позиций: {{menu_items.count}}</h4>
   {% for dish in menu_items %}
