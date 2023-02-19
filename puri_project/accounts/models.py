@@ -8,7 +8,7 @@ class Restoraunt(models.Model):
     employee = models.ManyToManyField(User)
     
     def __str__(self):
-        return self.name
+        return self.title
     
     class Meta:
         verbose_name = "Ресторан"
