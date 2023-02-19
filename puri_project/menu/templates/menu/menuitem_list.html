@@ -5,7 +5,7 @@
 {% block navbar %}{% include 'includes/navbar.html' %}{% endblock navbar %}
 {% block sidebar %}{% include 'includes/sidebar.html' %}{% endblock sidebar %}
 {% block content %}
-
+{% comment %} <span>for</span> {% endcomment %}
 <div class="row mt-3 pt-3 mb-3 d-flex flex-column sticky-top bg-light">
   <div class="col-12 mb-3">
     <form action="{% url 'filter' %}" method="get">
