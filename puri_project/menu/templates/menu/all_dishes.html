@@ -59,7 +59,7 @@
             </p>
             
             {% if dish.sauce.all.count > 0 %}
-              <p class="card-text "><span class='font-weight-bold'>Состав заправки: </span>
+              <p class="card-text "><span class='font-weight-bold'>Заправка: </span>
                 {% for comp in dish.sauce.all %}
                   {{comp.name}},
                 {% endfor %}
