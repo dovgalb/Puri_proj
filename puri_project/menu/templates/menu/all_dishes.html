@@ -48,11 +48,12 @@
         <div class="col-md-8">
           <div class="card-body text-left">
             <h5 class="card-title text-capitalize">{{ dish.name }}</h5>
-            <p class="card-text"><span class='font-weight-bold'>Cостав блюда:</span>
+            <p class="card-text"><span class='font-weight-bold'> Cостав блюда:</span>
               {% for comp in dish.compound.all %} 
-                 {{comp.name}}, 
-                 {% endfor %}
-                {% for comp in dish.compound.all %}
+                 {{comp.name}},
+              {% endfor %}
+
+              {% for comp in dish.compound.all %}
                 {% if comp.compound.count > 0 %}<p><span class='font-weight-bold text-capitalize'>{{comp}}</span>: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p> <hr>{% endif %}
               {% endfor %}
             </p>
@@ -60,19 +61,23 @@
             {% if dish.sauce.all.count > 0 %}
               <p class="card-text "><span class='font-weight-bold'>Состав заправки: </span>
                 {% for comp in dish.sauce.all %}
-                  {{comp}}
-                  {% for comp in dish.sauce.all %}
-                  {% if comp.compound.count > 0 %}<p><span class='font-weight-bold text-capitalize'>{{comp}}</span>: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p><hr> {% endif %}
-                  {% endfor %} 
+                  {{comp.name}},
                 {% endfor %}
-              </p> 
+
+                {% for comp in dish.sauce.all %}
+                  {% if comp.compound.count > 0 %}<p><span class='font-weight-bold text-capitalize'>{{comp}}</span>: {% for comps in comp.compound.all %}{{comps}}, {% endfor %}</p><hr> {% endif %}
+                {% endfor %}
+              </p>
             {% endif %}
+
             {% if dish.description %}
               <p class="card-text"><span class='font-weight-bold text-capitalize'>Описание:</span><br> {{ dish.description }}</p>
             {% endif %}
+
             {% if  dish.weight %}
               <p class="card-text"><span class='font-weight-bold'>Выход блюда:</span> {{ dish.weight }} грамм</p>
             {% endif %}
+
             <p class="card-text"><small class="text-muted">Дата добавления {{ dish.create_date}} <br> Последнее обновление {{ dish.update_date}}</small></p>
           </div>
         </div>
