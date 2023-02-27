@@ -47,7 +47,7 @@
 
         <div class="col-md-8">
           <div class="card-body text-left">
-            <h5 class="card-title text-capitalize">{{ dish.name }}</h5>
+            <h5 class="card-title text">{{ dish.name }}</h5>
             <p class="card-text"><span class='font-weight-bold'> Cостав блюда:</span>
               {% for comp in dish.compound.all %} 
                  {{comp.name}},
